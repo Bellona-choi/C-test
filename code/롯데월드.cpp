@@ -38,8 +38,8 @@ int main()
 	printf("1. 없음 (나이우대는 자동처리)\n");
 	printf("2. 장애인 우대\n");
 	printf("3. 국가유공자 우대\n");
-	printf("4.휴가장병 우대\n");
-	printf("5.임산부 우대\n");
+	printf("4. 휴가장병 우대\n");
+	printf("5. 임산부 우대\n");
 	printf("6. 다둥이 행복카드 우대\n");
 	scanf("%d", &C);
 	
@@ -110,5 +110,6 @@ int main()
 	printf("계속 주문하시겠습니까?(1.주문, 2. 종료)\n");
 	scanf("%d",&Exit) ;
 	}while(Exit == 1);
+	printf("이용해 주셔서 감사합니다.");
 		return 0;		
 }
