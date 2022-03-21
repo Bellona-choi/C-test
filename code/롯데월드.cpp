@@ -10,11 +10,11 @@ int main()
 	struct tm* t;
 	timer = time(NULL);
 	t = localtime(&timer);
-	const int baby=15000;
-	const int all_1Day_Adult=59000,all_1Day_Teen=52000,all_1Day_Child=47000;
-	const int all_Aft4_Adult=48000,all_Aft4_Teen=42000,all_Aft4_Child=36000;
-	const int park_1Day_Adult=56000,park_1Day_Teen=50000,park_1Day_Child=46000;
-	const int park_Aft4_Adult=45000,park_Aft4_Teen=40000,park_Aft4_Child=35000;
+	const int BABY=15000;
+	const int ALL_1Day_Adult=59000,ALL_1Day_Teen=52000,ALL_1Day_Child=47000;
+	const int ALL_Aft4_Adult=48000,ALL_Aft4_Teen=42000,ALL_Aft4_Child=36000;
+	const int PARK_1Day_Adult=56000,PARK_1Day_Teen=50000,PARK_1Day_Child=46000;
+	const int PARK_Aft4_Adult=45000,PARK_Aft4_Teen=40000,PARK_Aft4_Child=35000;
 	do
 	{
 	
@@ -47,45 +47,45 @@ int main()
 	if(use==1){
 		if(choice==1){
 			if (age>=19 && age<=64)
-			pay=pay+all_1Day_Adult;
+			pay=pay+ALL_1Day_Adult;
 			if (age>=13 && age<=18)
-			pay=pay+all_1Day_Teen;
+			pay=pay+ALL_1Day_Teen;
 			if ((age>=3 && age<=12) || age>=65)
-			pay=pay+all_1Day_Child;
+			pay=pay+ALL_1Day_Child;
 			if (age<=2)
-			pay=pay+baby;
+			pay=pay+BABY;
 		}
 		else if (choice==2){
 			if (age>=19 && age<=64)
-			pay=pay+all_Aft4_Adult;
+			pay=pay+ALL_Aft4_Adult;
 			if (age>=13 && age<=18)
-			pay=pay+all_Aft4_Teen;
+			pay=pay+ALL_Aft4_Teen;
 			if ((age>=3 && age<=12) || age>=65)
-			pay=pay+all_Aft4_Child;
+			pay=pay+ALL_Aft4_Child;
 			if (age<=2)
-			pay=pay+baby;
+			pay=pay+BABY;
 		}
 	}
 	if(use==2){
 		if(choice==1){
 			if (age>=19 && age<=64)
-			pay=pay+park_1Day_Adult;
+			pay=pay+PARK_1Day_Adult;
 			if (age>=13 && age<=18)
-			pay=pay+park_1Day_Teen;
+			pay=pay+PARK_1Day_Teen;
 			if ((age>=3 && age<=12) || age>=65)
-			pay=pay+park_1Day_Child;
+			pay=pay+PARK_1Day_Child;
 			if (age<=2)
-			pay=pay+baby;
+			pay=pay+BABY;
 		}
 		else if (choice==2){
 			if (age>=19 && age<=64)
-			pay=pay+park_Aft4_Adult;
+			pay=pay+PARK_Aft4_Adult;
 			if (age>=13 && age<=18)
-			pay=pay+park_Aft4_Teen;
+			pay=pay+PARK_Aft4_Teen;
 			if ((age>=3 && age<=12) || age>=65)
-			pay=pay+park_Aft4_Child;
+			pay=pay+PARK_Aft4_Child;
 			if (age<=2)
-			pay=pay+baby;
+			pay=pay+BABY;
 		}
 	}
 	switch(C){
