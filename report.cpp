@@ -11,11 +11,11 @@ const int ALL_DAY[3] = {59000, 52000, 47000};
 const int ALL_Aft4[3] = {48000, 42000, 36000};
 const int PARK_DAY[3] = {56000, 50000, 46000};
 const int PARK_Aft4[3] = {45000, 40000, 35000};
- 
 int tm_year, tm_mday, tm_mon; 
-
-
-
+const int MAX = 100;
+int count = 0;
+int year[MAX],month[MAX],day[MAX],tickettype[MAX],tickettime[MAX],useage[MAX],ticketsu[MAX],ticketprice[MAX],woodae[MAX];
+int woodae1[6]={0,};	
 
 
 void TICKETTYPE(){
@@ -138,7 +138,6 @@ void LAST_ASK(){
 	scanf("%d",&Exit);
 	printf("이용해 주셔서 감사합니다.\n");
 } 
-
 void FINISH_LINE(){
 		printf("이용해 주셔서 감사합니다.\n");
 		printf("=================네버랜드=================\n");
@@ -147,7 +146,7 @@ void FINISH_LINE(){
 void OUTPUT_UNIT(){
 	for (int i =0; i < index;i++)
 	{
-		
+		FILE *filePointer = fopen("report.csv","a");
 		printf("%d", today);
 		switch(orderlist[i][0])
 		{
@@ -212,14 +211,20 @@ void OUTPUT_UNIT(){
 			default:
 				break; 
 		}
-		
+	fprintf(filePointer, "%d,%d,%d,%d,%d,%d,%d\n", today, orderlist[i][0],orderlist[i][1],orderlist[i][2],orderlist[i][3],orderlist[i][4],orderlist[i][5]);	
 	}
 }
-
+void FINISH_LINE2(){
+	printf("\n================================================\n");
+	printf("입장료는 %d 원 입니다.", totalpay);	
+	printf("새로운 주문을 원하십니까?\n");
+	printf("1. 새로운 주문 \n");
+	printf("2. 프로그램 종료\n");
+	scanf("%d", &start);
+}
 
 int main()
 {
-
 	time_t timer;
 	struct tm* t;
 	timer = time(NULL);
@@ -247,11 +252,10 @@ int main()
 		AGE_SELSCTION();
 		//종합이용권 주야간 나이별 가격 
 		TICKETTYPE_1USE();
-		//파크이용뤈 주야간 나이별 가격	
+		//파크이용 주야간 나이별 가격	
 		TICKETTYPE_2USE();	
 		//우대 할인 
 		WOODAE_PAY();
-		
 		//선 택 
 		orderlist[index][0] = use;
 		orderlist[index][1] = choice;
@@ -259,7 +263,7 @@ int main()
 		orderlist[index][3] = AGE1;
 		orderlist[index][4] = pay*A;
 		orderlist[index][5] = C;
-		
+		//총금액 계산 
 		totalpay += pay;
 		
 		pay = 0;
@@ -268,22 +272,25 @@ int main()
 		LAST_ASK();
 		
 		}while(Exit == 1);
-		
-		//파일저장 
-		FILE *filePointer = fopen("report.csv","a");
-		//
+			
+		//주문 완료 후 데이터 출력부 시작  
 		FINISH_LINE();
+		//데이터 출력을 위한 함수정리 
 		OUTPUT_UNIT();
-		fprintf(filePointer, "%d,%d,%d,%d,%d,%d,%d\n", today, orderlist[i][0],orderlist[i][1],orderlist[i][2],orderlist[i][3],orderlist[i][4],orderlist[i][5]);
-		printf("\n================================================\n");
-		printf("입장료는 %d 원 입니다.", totalpay);	
+		//프로그램 종료 
+		FINISH_LINE2();
+		//토탈가격 초기화 
 		totalpay = 0;
+		//OUTPUT_UNIT초기화 
 		index = 0;
 		
-		printf("새로운 주문을 원하십니까?\n");
-		printf("1. 새로운 주문 \n");
-		printf("2. 프로그램 종료\n");
-		scanf("%d", &start);
+		
 	}while(start == 1);
-	return 0;		
+	
+	return 0;
 }
+
+
+
+
+
